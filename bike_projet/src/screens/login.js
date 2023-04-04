@@ -42,7 +42,6 @@ const Login = () => {
       <Img
         style={{ width: 190, height: 190 }}
         source={require('../assets/yam.png')}
-        // source={require('../assets/yam.png')}
       />
       <Wrapper>
         <InputContainer>

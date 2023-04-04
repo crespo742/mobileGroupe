@@ -5,7 +5,6 @@ import styled from 'styled-components';
 import Home from '../screens/home';
 import Login from '../screens/login';
 import Favoris from '../screens/favoris';
-import Bike from '../screens/bike';
 
 const Stack = createNativeStackNavigator();
 
@@ -19,7 +18,6 @@ const Routes = () => {
           }}>
           <Stack.Screen name="Home" component={Home} />
           <Stack.Screen name="Login" component={Login} />
-          <Stack.Screen name="Bike" component={Bike} />
           <Stack.Screen name="Favoris" component={Favoris} />
         </Stack.Navigator>
       </NavigationContainer>

@@ -8,6 +8,11 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { FlatList, Image, View } from 'react-native';
 
+import Notifee from '@notifee/react-native';
+
+import Toast from 'react-native-toast-message';
+
+
 const Home = props => {
 
   const [bikes, setBikes] = useState([]);
@@ -51,7 +56,15 @@ const Home = props => {
       const newData = [...data, { make, model, year, power }];
       const jsonValue = JSON.stringify(newData);
       await AsyncStorage.setItem('@model', jsonValue);
+
+      Toast.show({
+        type: 'success',
+        text1: 'Bike added to favorites',
+        text2: `${make} - ${model} - ${year}- ${power}`,
+      });
+  
     };
+    
 
 
     return (
@@ -88,7 +101,7 @@ const Home = props => {
         <CustomButton text="Ducati" onPress={() => handleButtonClick('Ducati')} />
         <CustomButton text="Bmw" onPress={() => handleButtonClick('Bmw')} />
       </Wrapper>
-      <List
+      <FlatList
         data={bikes}
         renderItem={({ item }) => (
           <BikeRow
