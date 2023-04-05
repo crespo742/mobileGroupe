@@ -6,14 +6,21 @@ import FavButton from '../components/favButton';
 import CustomButton from '../components/customButton';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { FlatList, Image, View } from 'react-native';
+import { Text, FlatList, Image, View } from 'react-native';
 
 import Notifee from '@notifee/react-native';
-
 import Toast from 'react-native-toast-message';
+
+// import { useTranslation } from 'react-i18n-next';
 
 
 const Home = props => {
+
+  // const { t, i18n } = useTranslation();
+
+  // const changeLanguage = (language) => {
+  //   i18n.changeLanguage(language);
+  // };
 
   const [bikes, setBikes] = useState([]);
   const [make, setMake] = useState('');
@@ -62,9 +69,21 @@ const Home = props => {
         text1: 'Bike added to favorites',
         text2: `${make} - ${model} - ${year}- ${power}`,
       });
-  
+
+      // Créer une notification
+      await Notifee.createChannel({
+        id: 'favorites',
+        name: 'Favorites',
+      });
+      await Notifee.displayNotification({
+        title: 'Bike added to favorites',
+        body: `${make} - ${model} - ${year}- ${power}`,
+        android: {
+          channelId: 'favorites',
+        },
+      });
     };
-    
+
 
 
     return (
@@ -90,8 +109,8 @@ const Home = props => {
 
   return (
     <View>
-      <Header/>
-        <FavButton text="Voir mes favoris" onPress={() => handleNavigation('Favoris')} />
+      <Header />
+      <FavButton text="Voir mes favoris" onPress={() => handleNavigation('Favoris')} />
       <Wrapper>
         <CustomButton text="Honda" onPress={() => handleButtonClick('Honda')} />
         <CustomButton text="Yamaha" onPress={() => handleButtonClick('Yamaha')} />
@@ -101,6 +120,11 @@ const Home = props => {
         <CustomButton text="Ducati" onPress={() => handleButtonClick('Ducati')} />
         <CustomButton text="Bmw" onPress={() => handleButtonClick('Bmw')} />
       </Wrapper>
+      {/* <>
+        <Text>{t('language.greeting')}</Text>
+        <Button title={t('language.changeToEnglish')} onPress={() => changeLanguage('en')} />
+        <Button title={t('language.changeToFrench')} onPress={() => changeLanguage('fr')} />
+      </> */}
       <FlatList
         data={bikes}
         renderItem={({ item }) => (
