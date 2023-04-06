@@ -1,5 +1,6 @@
 # Lecornet Killian & Crespo Matthias
 Projet de fin de module react-native
+c'est une appli qui utilise une API regroupant des modeles de moto 
 Fonctionnalités : 
 - Formulaire d'inscription/connexion
 - Page profil regroupant les informations comme la position geographique de l'utilisateur mais aussi les likes de l'utilisateur 
