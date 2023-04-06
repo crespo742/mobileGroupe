@@ -14,6 +14,7 @@ Fonctionnalités :
 - differentes notifications
 - login (pas encore dans firebase mais en cours)
 - debut des modifications de langue. Bonus : detection de theme
+- systeme de favoris
 
 20/04 : 
 - toutes les fonctionnalités demander a la base dans le cahier des charges
