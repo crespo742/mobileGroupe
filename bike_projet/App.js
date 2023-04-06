@@ -2,6 +2,7 @@ import React from 'react';
 import Routes from './src/config/routes';
 import Toast from 'react-native-toast-message';
 import { View, Text, useColorScheme } from 'react-native';
+import { Provider } from 'react-redux';
 
 const App = () => {
   const theme = useColorScheme();
@@ -23,8 +24,10 @@ const App = () => {
           This is demo of default dark/light theme using appearance.{' '}
         </Text>
       </View>
-      <Routes />
-      <Toast />
+      {/* <Provider store={store}> */}
+        <Routes />
+        <Toast />
+      {/* </Provider> */}
     </>
   );
 };
