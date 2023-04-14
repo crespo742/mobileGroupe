@@ -7,6 +7,8 @@ import { initializeApp } from 'firebase/app';
 import config from '../config/firebase';
 import { useState } from 'react';
 import Geolocation from '@react-native-community/geolocation';
+import GoBack from '../components/goBack';
+import { useNavigation } from '@react-navigation/native';
 
 
 const Register = () => {
@@ -15,6 +17,7 @@ const Register = () => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
+  const navigation = useNavigation();
 
   const app = initializeApp(config);
   const auth = getAuth(app);
@@ -64,6 +67,7 @@ const Register = () => {
 
   return (
     <>
+      <GoBack onPress={() => navigation.goBack()} />
       <TextInput
         placeholder="Email"
         onChangeText={text => setEmail(text)}

@@ -5,6 +5,7 @@ import { initializeApp } from 'firebase/app';
 import { useNavigation } from '@react-navigation/native';
 import config from '../config/firebase';
 import FavButton from '../components/favButton';
+import GoBack from '../components/goBack';
 
 const Profile = () => {
   const [user, setUser] = useState(null);
@@ -35,6 +36,7 @@ const Profile = () => {
 
   return (
     <View>
+    <GoBack onPress={() => navigation.goBack()}/>
       {user && (
         <>
           <Text>Email: {user.email}</Text>

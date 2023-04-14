@@ -10,6 +10,7 @@ import { Text, FlatList, Image, View } from 'react-native';
 
 import Notifee from '@notifee/react-native';
 import Toast from 'react-native-toast-message';
+import { onAuthStateChanged } from 'firebase/auth';
 
 // import { useTranslation } from 'react-i18n-next';
 
@@ -29,7 +30,7 @@ const Home = props => {
   useFocusEffect(() => {
     AsyncStorage.getItem('token')
       .then(token => {
-        if (!token) {
+        if (!onAuthStateChanged) {
           props.navigation.navigate('Login');
         }
       })

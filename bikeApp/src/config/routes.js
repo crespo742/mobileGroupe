@@ -18,8 +18,8 @@ const Routes = () => {
           screenOptions={{
             headerShown: false,
           }}>
-          <Stack.Screen name="Home" component={Home} />
           <Stack.Screen name="Login" component={Login} />
+          <Stack.Screen name="Home" component={Home} />
           <Stack.Screen name="Favoris" component={Favoris} />
           <Stack.Screen name="Register" component={Register} />
           <Stack.Screen name="Profile" component={Profile} />
