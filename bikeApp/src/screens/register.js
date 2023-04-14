@@ -1,11 +1,13 @@
-import {TouchableOpacity, Text, TextInput} from 'react-native';
+import { TouchableOpacity, Text, TextInput } from 'react-native';
 import React from 'react-native';
-import {getAuth, createUserWithEmailAndPassword} from 'firebase/auth';
-import {firebase} from '@react-native-firebase/auth';
-import { getDatabase, ref, set,get } from "firebase/database";
-import {initializeApp} from 'firebase/app';
+import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+import { firebase } from '@react-native-firebase/auth';
+import { getDatabase, ref, set, get } from "firebase/database";
+import { initializeApp } from 'firebase/app';
 import config from '../config/firebase';
 import { useState } from 'react';
+import Geolocation from '@react-native-community/geolocation';
+
 
 const Register = () => {
 
@@ -17,34 +19,48 @@ const Register = () => {
   const app = initializeApp(config);
   const auth = getAuth(app);
 
-  const test = () => {
+  const createUser = () => {
     if (password !== confirmPassword) {
       setError('Les deux mots de passe doivent correspondre');
       return;
     }
 
     createUserWithEmailAndPassword(auth, email, password)
-    .then(userCredential => {
-      const user = userCredential.user;
-      const db = getDatabase();
-      
-      const userRef = ref(db, 'users/' + user.uid);
-      const userData = {
-        email: email,
-        password: password,
-      };
-      return set(userRef, userData);
-    })
-    .then(() => {
-      console.log('Utilisateur enregistré avec succès dans la base de données Firebase');
-    })
-    .catch(error => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      console.log(errorCode);
-      console.log(errorMessage);
-    });
+      .then(userCredential => {
+        const user = userCredential.user;
+        const db = getDatabase();
+
+        const userRef = ref(db, 'users/' + user.uid);
+        const userData = {
+          email: email,
+          password: password,
+        };
+
+        getLocation().then(location => {
+          userData.location = location;
+          return set(userRef, userData);
+        }).then(() => {
+          console.log('Utilisateur enregistré avec succès dans la base de données Firebase');
+        }).catch(error => {
+          console.log(error.message);
+        });
+      })
   }
+
+  const getLocation = () => {
+    return new Promise((resolve, reject) => {
+      Geolocation.getCurrentPosition(
+        position => {
+          const { latitude, longitude } = position.coords;
+          resolve({ latitude, longitude });
+        },
+        error => {
+          reject(error);
+        },
+        { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
+      );
+    });
+  };
 
   return (
     <>
@@ -66,7 +82,7 @@ const Register = () => {
         value={confirmPassword}
       />
       {error !== '' && <Text>{error}</Text>}
-      <TouchableOpacity onPress={test}>
+      <TouchableOpacity onPress={createUser}>
         <Text>Create user</Text>
       </TouchableOpacity>
     </>
