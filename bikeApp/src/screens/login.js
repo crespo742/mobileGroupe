@@ -1,126 +1,48 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useNavigation } from '@react-navigation/native';
-import axios from 'axios';
-import React from 'react';
-import styled from 'styled-components';
+import React, { useState } from 'react';
+import { View, Text, TouchableOpacity, TextInput } from 'react-native';
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import { initializeApp } from 'firebase/app';
+import config from '../config/firebase';
 
-const Login = () => {
-  const navigation = useNavigation();
-  const [inputs, setInputs] = React.useState({
-    email: '',
-    password: '',
-  });
+const Login = ({ navigation }) => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
 
-  const handleLogin = () => {
-    axios({
-      method: 'POST',
-      url: 'https://login.hikkary.com/users/login',
-      data: {
-        username: inputs.email,
-        password: inputs.password,
-      },
-    })
-      .then(res => {
-        AsyncStorage.setItem('token', res.headers['x-access-token'])
-          .then(() => {
-            navigation.navigate('Home');
-          })
-          .catch(err => {
-            console.log('🚀 ~ file: login.js:6 ~ Login ~ err', err);
-          });
+  const app = initializeApp(config);
+  const auth = getAuth(app);
+
+  const test = () => {
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Connexion réussie, rediriger vers la page Home
+        navigation.navigate('Home');
       })
-      .catch(err => {
-        console.log('🚀 ~ file: login.js:6 ~ Login ~ err', err);
+      .catch((error) => {
+        setError(error.message);
       });
   };
 
   return (
-    <Container>
-      <TouchableGoBack onPress={() => navigation.goBack()}>
-        <StyledText>Go Back</StyledText>
-      </TouchableGoBack>
-      <Img
-        style={{ width: 190, height: 190 }}
-        source={require('../assets/yam.png')}
+    <View>
+      <Text>Login Page</Text>
+      <TextInput
+        placeholder="Email"
+        onChangeText={(text) => setEmail(text)}
+        value={email}
       />
-      <Wrapper>
-        <InputContainer>
-          <TextInputStyled
-            placeholder="Email"
-            value={inputs.email}
-            onChangeText={text => setInputs({ ...inputs, email: text })}
-          />
-        </InputContainer>
-        <InputContainer>
-          <TextInputStyled
-            placeholder="Password"
-            value={inputs.password}
-            onChangeText={text => setInputs({ ...inputs, password: text })}
-          />
-        </InputContainer>
-        <InputContainer>
-          <TouchableLogin onPress={handleLogin}>
-            <StyledText>Se connecter</StyledText>
-          </TouchableLogin>
-        </InputContainer>
-      </Wrapper>
-    </Container>
+      <TextInput
+        placeholder="Password"
+        onChangeText={(text) => setPassword(text)}
+        value={password}
+        secureTextEntry={true}
+      />
+      <TouchableOpacity onPress={test}>
+        <Text>Login</Text>
+      </TouchableOpacity>
+      {error !== '' && <Text>{error}</Text>}
+    </View>
   );
 };
-
-const InputContainer = styled.View`
-  margin: 4px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  border-radius:115px;
-`;
-
-const Wrapper = styled.View`
-  top:80px;
-`;
-
-const Img = styled.Image`
-  left:100px;
-  top:50px;
-`;
-
-const TextInputStyled = styled.TextInput`
-  border:1px solid black;
-  width:270px;
-  border-radius: 12px;
-  padding: 12px;
-`;
-
-const TouchableLogin = styled.TouchableOpacity`
-  border:1px solid;
-  border-radius:5px;
-  width:100px;
-  height:30px;
-  background-color:black;
-  justify-content:center;
-  align-items:center;
-  margin-top:10px;
-`;
-
-const TouchableGoBack = styled.TouchableOpacity`
-  border:1px solid;
-  width:80px;
-  height:30px;
-  background-color:black;
-  justify-content:center;
-  align-items:center;
-  top:10px;
-  left:10px;
-  border-radius:5px;
-`;
-
-const StyledText = styled.Text`
-  color: white;
-`;
-
-const Container = styled.View`
-  flex: 1;
-`;
 
 export default Login;

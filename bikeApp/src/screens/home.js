@@ -112,6 +112,7 @@ const Home = props => {
       <Header />
       <FavButton text="Voir mes favoris" onPress={() => handleNavigation('Favoris')} />
       <FavButton text="Voir mes register" onPress={() => handleNavigation('Register')} />
+      <FavButton text="Voir mon profile" onPress={() => handleNavigation('Profile')} />
       <Wrapper>
         <CustomButton text="Honda" onPress={() => handleButtonClick('Honda')} />
         <CustomButton text="Yamaha" onPress={() => handleButtonClick('Yamaha')} />

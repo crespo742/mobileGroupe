@@ -6,6 +6,7 @@ import Home from '../screens/home';
 import Login from '../screens/login';
 import Favoris from '../screens/favoris';
 import Register from '../screens/register';
+import Profile from '../screens/profile';
 
 const Stack = createNativeStackNavigator();
 
@@ -21,6 +22,7 @@ const Routes = () => {
           <Stack.Screen name="Login" component={Login} />
           <Stack.Screen name="Favoris" component={Favoris} />
           <Stack.Screen name="Register" component={Register} />
+          <Stack.Screen name="Profile" component={Profile} />
         </Stack.Navigator>
       </NavigationContainer>
     </GlobalSafeArea>
