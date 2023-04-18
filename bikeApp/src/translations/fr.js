@@ -1,5 +1,6 @@
 export default {
-    translation: {
-        home: 'Acceuil',
-    },
-};
+      favorites: 'Voir mes favoris',
+      register: 'Voir mes registres',
+      profile: 'Voir mon profil',
+  };
+  

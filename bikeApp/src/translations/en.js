@@ -1,5 +1,5 @@
 export default {
-    translation: {
-        home: 'Home',
-    },
-};
+      favorites: 'View my favorites',
+      register: 'View my register',
+      profile: 'View my profile',
+  };
