@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth';
 import { initializeApp } from 'firebase/app';
 import { useNavigation } from '@react-navigation/native';
@@ -40,6 +40,9 @@ const Profile = () => {
       {user && (
         <>
           <Text>Email: {user.email}</Text>
+          <TouchableOpacity onPress={() => navigation.navigate('Chat')}>
+          <Text>Message</Text>
+          </TouchableOpacity>
           <FavButton text="deconnexion" onPress={handleSignOut} />
         </>
       )}
