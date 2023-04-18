@@ -6,24 +6,14 @@ import FavButton from '../components/favButton';
 import CustomButton from '../components/customButton';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { Text, FlatList, Image, View , TouchableOpacity} from 'react-native';
-
+import { Text, FlatList, Image, View, TouchableOpacity } from 'react-native';
 import Notifee from '@notifee/react-native';
 import Toast from 'react-native-toast-message';
 import { onAuthStateChanged } from 'firebase/auth';
 import { useTranslation } from 'react-i18next';
-import i18n from '../config/i18n';
-
-// import { useTranslation } from 'react-i18n-next';
 
 
 const Home = props => {
-
-  // const { t, i18n } = useTranslation();
-
-  // const changeLanguage = (language) => {
-  //   i18n.changeLanguage(language);
-  // };
 
   const [bikes, setBikes] = useState([]);
   const [make, setMake] = useState('');
@@ -94,8 +84,6 @@ const Home = props => {
       });
     };
 
-
-
     return (
       <Wrapper>
         <StyledText>
@@ -118,17 +106,19 @@ const Home = props => {
   };
 
   return (
-    <View>
+    <BigView>
       <Header />
       <TouchableOpacity onPress={() => changeLanguage('en')}>
-        <Text>{t('english')}</Text>
+        <StyledText>{t('english')}</StyledText>
       </TouchableOpacity>
       <TouchableOpacity onPress={() => changeLanguage('fr')}>
-        <Text>{t('french')}</Text>
+        <StyledText>{t('french')}</StyledText>
       </TouchableOpacity>
-      <FavButton text={t('favorites')} onPress={() => handleNavigation('Favoris')} />
-      <FavButton text={t('register')} onPress={() => handleNavigation('Register')} />
-      <FavButton text={t('profile')} onPress={() => handleNavigation('Profile')} />
+      <Wrapper>
+        <FavButton text={t('favorites')} onPress={() => handleNavigation('Favoris')} />
+        <FavButton text={t('register')} onPress={() => handleNavigation('Register')} />
+        <FavButton text={t('profile')} onPress={() => handleNavigation('Profile')} />
+      </Wrapper>
       <Wrapper>
         <CustomButton text="Honda" onPress={() => handleButtonClick('Honda')} />
         <CustomButton text="Yamaha" onPress={() => handleButtonClick('Yamaha')} />
@@ -138,11 +128,6 @@ const Home = props => {
         <CustomButton text="Ducati" onPress={() => handleButtonClick('Ducati')} />
         <CustomButton text="Bmw" onPress={() => handleButtonClick('Bmw')} />
       </Wrapper>
-      {/* <>
-        <Text>{t('language.greeting')}</Text>
-        <Button title={t('language.changeToEnglish')} onPress={() => changeLanguage('en')} />
-        <Button title={t('language.changeToFrench')} onPress={() => changeLanguage('fr')} />
-      </> */}
       <FlatList
         data={bikes}
         renderItem={({ item }) => (
@@ -155,19 +140,19 @@ const Home = props => {
         )}
         keyExtractor={item => item.id}
       />
-    </View>
+    </BigView>
   );
 };
 
 const StyledText = styled.Text`
-  color: black;
-`;
-const List = styled.FlatList`
-  display:flex;
+  color: ${props => props.theme.textColor};
 `;
 
 const Wrapper = styled.Text`
-  
+  background-color: ${props => props.theme.backgroundColor};
+`;
+const BigView = styled.View`
+  background-color: ${props => props.theme.backgroundColor};
 `;
 
 const Container = styled.TouchableOpacity``;

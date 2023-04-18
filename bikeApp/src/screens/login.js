@@ -3,6 +3,7 @@ import { View, Text, TouchableOpacity, TextInput } from 'react-native';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import { initializeApp } from 'firebase/app';
 import config from '../config/firebase';
+import styled from 'styled-components';
 
 const Login = ({ navigation }) => {
   const [email, setEmail] = useState('');
@@ -12,7 +13,7 @@ const Login = ({ navigation }) => {
   const app = initializeApp(config);
   const auth = getAuth(app);
 
-  const test = () => {
+  const login = () => {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // Connexion réussie, rediriger vers la page Home
@@ -24,8 +25,8 @@ const Login = ({ navigation }) => {
   };
 
   return (
-    <View>
-      <Text>Login Page</Text>
+    <StyledView>
+      <StyledText>Login Page</StyledText>
       <TextInput
         placeholder="Email"
         onChangeText={(text) => setEmail(text)}
@@ -37,12 +38,22 @@ const Login = ({ navigation }) => {
         value={password}
         secureTextEntry={true}
       />
-      <TouchableOpacity onPress={test}>
-        <Text>Login</Text>
+      <TouchableOpacity onPress={login}>
+        <StyledText>Login</StyledText>
       </TouchableOpacity>
       {error !== '' && <Text>{error}</Text>}
-    </View>
+    </StyledView>
   );
 };
+
+const StyledView = styled.View`
+  background-color: ${props => props.theme.backgroundColor};
+  align-items: center;
+  justify-content: center;
+`;
+
+const StyledText = styled.Text`
+  color: ${props => props.theme.textColor};
+`;
 
 export default Login;

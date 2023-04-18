@@ -40,7 +40,7 @@ const Favoris = (props) => {
   );
 
   return (
-    <View>
+    <StyledView>
       <Header/>
       <GoBack onPress={() => navigation.goBack()}/>
       <FlatList
@@ -48,12 +48,17 @@ const Favoris = (props) => {
         renderItem={renderItem}
         keyExtractor={(item, index) => index.toString()}
       />
-    </View>
+    </StyledView>
   );
 };
 
 const StyledText = styled.Text`
   text-align:center;
+  color: ${props => props.theme.textColor};
+`;
+
+const StyledView = styled.View`
+  background-color: ${props => props.theme.backgroundColor};
 `;
 
 export default Favoris;

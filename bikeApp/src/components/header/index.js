@@ -33,7 +33,7 @@ const Wrapper = styled.View`
   align-items:center;
   flex-direction: row;
   justify-content:space-between;
-  background-color:white;
+  background-color: ${props => props.theme.backgroundColor};
   height:90px;
 `;
 

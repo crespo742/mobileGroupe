@@ -1,53 +1,33 @@
-// Splash Screen Component
 import React from 'react';
-import { View, Text, Image } from 'react-native';
-import { connect } from 'react-redux';
+import { Text } from 'react-native';
+import styled from 'styled-components/native';
 
-class SplashScreen extends React.Component {
-  componentDidMount() {
-    setTimeout(() => {
-      // Naviguer vers la page d'accueil après 2 secondes
-      this.props.navigation.navigate('Home');
-    }, 2000);
-  }
-
-  render() {
-    return (
-      <View>
-        <Image source={require('./splash-screen-image.png')} />
-        {this.props.isLoading && (
-          <Text>Loading...</Text>
-        )}
-      </View>
-    );
-  }
-}
-
-// Reducer
-const initialState = {
-  isLoading: true,
+const SplashScreen = () => {
+  return (
+    <Container>
+      <Logo
+        style={{ width: 150, height: 150 }}
+        source={require('../../assets/yam.png')}
+      />
+      <StyledText>BONYYYOOOUR AMIGO !</StyledText>
+    </Container>
+  );
 };
 
-const splashReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case 'LOADING':
-      return {
-        ...state,
-        isLoading: true,
-      };
-    case 'FINISHED_LOADING':
-      return {
-        ...state,
-        isLoading: false,
-      };
-    default:
-      return state;
-  }
-};
+const StyledText = styled.Text`
+  color: ${props => props.theme.textColor};
+`;
 
-// Connecter le reducer à votre composant de Splash Screen
-const mapStateToProps = (state) => ({
-  isLoading: state.splashReducer.isLoading,
-});
+const Logo = styled.Image`
+  color: black;
+  text-align:center;
+`;
 
-export default connect(mapStateToProps)(SplashScreen);
+const Container = styled.View`
+  background-color: ${props => props.theme.backgroundColor};
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+`;
+
+export default SplashScreen;

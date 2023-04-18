@@ -10,7 +10,7 @@ const SupprButton = ({ text, onPress }) => {
 };
 
 const StyledButton = styled.TouchableOpacity`
-  background-color: black;
+  background-color: ${props => props.theme.backgroundColor};
   padding: 10px;
   border-radius: 5px;
   width:150px;
@@ -18,10 +18,11 @@ const StyledButton = styled.TouchableOpacity`
   left:130px;
   margin-bottom:25px;
   margin-top:25px;
+  border: ${props => props.theme.textColor};
 `;
 
 const StyledText = styled.Text`
-  color: white;
+  color: ${props => props.theme.textColor};
   text-align:center;
 `;
 
