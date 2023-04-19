@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import styled from 'styled-components/native';
-import { TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import GoBack from '../components/goBack';
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
@@ -9,6 +8,8 @@ import { getDatabase, ref, set, get } from 'firebase/database';
 import { initializeApp } from 'firebase/app';
 import config from '../config/firebase';
 import Geolocation from '@react-native-community/geolocation';
+import Notifee from '@notifee/react-native';
+import Toast from 'react-native-toast-message';
 
 const Register = () => {
   const navigation = useNavigation();
@@ -52,6 +53,23 @@ const Register = () => {
           .catch((error) => {
             console.log(error.message);
           });
+      });
+
+      Notifee.createChannel({
+        id: 'register',
+        name: 'Register',
+      });
+      Notifee.displayNotification({
+        title: 'User created succesfully',
+        body: `email : ${email} and pseudo : ${pseudo}`,
+        android: {
+          channelId: 'register',
+        },
+      });
+      
+      Toast.show({
+        type: 'success',
+        text1: `Welcome to our app ${pseudo}`,
       });
   };
 
@@ -148,4 +166,4 @@ const ButtonText = styled.Text`
 `;
 
 export default Register;
- 
+

@@ -71,7 +71,6 @@ const Home = props => {
         text2: `${make} - ${model} - ${year}- ${power}`,
       });
 
-      // Créer une notification
       await Notifee.createChannel({
         id: 'favorites',
         name: 'Favorites',
