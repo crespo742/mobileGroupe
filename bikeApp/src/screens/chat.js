@@ -79,7 +79,7 @@ const Chat = () => {
             <>
               <Text>Conversation with {selectedUser.email}:</Text>
               {messages.map((msg) => (
-                <Text key={msg.key}>{msg.user}: {msg.text}</Text>
+                <Text key={msg.key}>{user.email}: {msg.text}</Text>
               ))}
             </>
           )}
