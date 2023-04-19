@@ -14,6 +14,7 @@ import { useNavigation } from '@react-navigation/native';
 const Register = () => {
 
   const [email, setEmail] = useState('');
+  const [pseudo, setPseudo] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
@@ -28,7 +29,7 @@ const Register = () => {
       return;
     }
 
-    createUserWithEmailAndPassword(auth, email, password)
+    createUserWithEmailAndPassword(auth, email, password,pseudo)
       .then(userCredential => {
         const user = userCredential.user;
         const db = getDatabase();
@@ -37,6 +38,7 @@ const Register = () => {
         const userData = {
           email: email,
           password: password,
+          pseudo: pseudo,
         };
 
         getLocation().then(location => {
@@ -68,6 +70,11 @@ const Register = () => {
   return (
     <>
       <GoBack onPress={() => navigation.goBack()} />
+      <TextInput
+        placeholder="Pseudo"
+        onChangeText={text => setPseudo(text)}
+        value={pseudo}
+      />
       <TextInput
         placeholder="Email"
         onChangeText={text => setEmail(text)}
