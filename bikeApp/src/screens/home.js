@@ -11,6 +11,7 @@ import Notifee from '@notifee/react-native';
 import Toast from 'react-native-toast-message';
 import { onAuthStateChanged } from 'firebase/auth';
 import { useTranslation } from 'react-i18next';
+import i18n from '../config/i18n';
 
 
 const Home = props => {
