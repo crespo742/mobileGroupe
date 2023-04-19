@@ -7,6 +7,7 @@ import config from '../config/firebase';
 import FavButton from '../components/favButton';
 import GoBack from '../components/goBack';
 import { Share } from 'react-native';
+import styled from 'styled-components/native';
 
 const Profile = () => {
   const [user, setUser] = useState(null);
@@ -14,6 +15,7 @@ const Profile = () => {
 
   const app = initializeApp(config);
   const auth = getAuth(app);
+
   const shareContent = () => {
     Share.share({
       message: 'Voici un message à partager !',
@@ -43,20 +45,70 @@ const Profile = () => {
   }
 
   return (
-    <View>
-    <GoBack onPress={() => navigation.goBack()}/>
+    <StyledContainer>
+      <GoBack onPress={() => navigation.goBack()} />
       {user && (
         <>
-          <Text>Email: {user.email}</Text>
+          <StyledTitle>Profil</StyledTitle>
+          <StyledInfoContainer>
+            <StyledInfo>Email:</StyledInfo>
+            <StyledInfoText>{user.email}</StyledInfoText>
+          </StyledInfoContainer>
+          <StyledInfoContainer>
+            <StyledInfo>Pseudo:</StyledInfo>
+            <StyledInfoText>{user.pseudo}</StyledInfoText>
+          </StyledInfoContainer>
           <TouchableOpacity onPress={() => navigation.navigate('Chat')}>
-          <Text>Message</Text>
+            <StyledLink>Envoyer un message</StyledLink>
           </TouchableOpacity>
-          <FavButton text="deconnexion" onPress={handleSignOut} />
-          <Button title="Partager" onPress={shareContent} />
+          <FavButton text="Déconnexion" onPress={handleSignOut} />
+          <StyledButtonContainer>
+            <Button title="Partager" onPress={shareContent} />
+          </StyledButtonContainer>
         </>
       )}
-    </View>
+    </StyledContainer>
   );
 };
+
+const StyledContainer = styled.View`
+  flex: 1;
+  background-color: ${props => props.theme.backgroundColor};
+  padding: 20px;
+`;
+
+const StyledTitle = styled.Text`
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: ${props => props.theme.textColor};
+`;
+
+const StyledInfoContainer = styled.View`
+  flex-direction: row;
+  margin-bottom: 10px;
+`;
+
+const StyledInfo = styled.Text`
+  font-size: 16px;
+  font-weight: bold;
+  color: ${props => props.theme.textColor};
+`;
+
+const StyledInfoText = styled.Text`
+  font-size: 16px;
+  margin-left: 5px;
+  color: ${props => props.theme.textColor};
+`;
+
+const StyledLink = styled.Text`
+  font-size: 16px;
+  color: ${props => props.theme.linkColor};
+  margin-bottom: 10px;
+`;
+
+const StyledButtonContainer = styled.View`
+  margin-top: 20px;
+`;
 
 export default Profile;
