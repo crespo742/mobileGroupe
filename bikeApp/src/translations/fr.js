@@ -16,5 +16,10 @@ export default {
       sendMessage: 'Envoyer un message',
       logout: 'Déconnexion',
       share: 'Partager',
+      selectUser: 'Choisit un utilisateur pour parler',
+      conversation: 'Conversation avec',
+      send: 'Envoyer',
+      verifPassword: 'Les deux mots de passe doivent correspondre',
+      Toast: 'Bienvenue sur notre application',
   };
   

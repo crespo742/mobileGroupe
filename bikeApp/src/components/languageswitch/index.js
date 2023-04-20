@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import { useTranslation } from 'react-i18next';
+import styled from 'styled-components/native';
+
+
 
 const Index = () => {
   const [currentLanguage, setCurrentLanguage] = useState('en');
@@ -12,32 +15,32 @@ const Index = () => {
   };
 
   return (
-    <View style={styles.container}>
-      <TouchableOpacity onPress={() => changeLanguage(currentLanguage === 'en' ? 'fr' : 'en')} style={styles.button}>
-        <Text style={styles.text}>{currentLanguage === 'en' ? 'FR' : 'EN'}</Text>
-      </TouchableOpacity>
-    </View>
+    <Container>
+      <Button onPress={() => changeLanguage(currentLanguage === 'en' ? 'fr' : 'en')}>
+        <ButtonText>{currentLanguage === 'en' ? 'FR' : 'EN'}</ButtonText>
+      </Button>
+    </Container>
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginVertical: 10,
-  },
-  button: {
-    paddingHorizontal: 10,
-    paddingVertical: 5,
-    borderRadius: 5,
-    marginHorizontal: 5,
-    borderWidth: 1,
-    borderColor: '#ccc',
-  },
-  text: {
-    fontWeight: 'bold',
-  },
-});
+const Container = styled.View`
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-vertical: 10px;
+`;
+
+const Button = styled.TouchableOpacity`
+  padding-horizontal: 10px;
+  padding-vertical: 5px;
+  border-radius: 5px;
+  margin-horizontal: 5px;
+  border-width: 1px;
+  border-color: #ccc;
+`;
+
+const ButtonText = styled.Text`
+  font-weight: bold;
+`;
 
 export default Index;

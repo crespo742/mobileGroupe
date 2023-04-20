@@ -5,12 +5,16 @@ import { getDatabase, ref, push, child, onValue, off } from 'firebase/database';
 import { initializeApp } from 'firebase/app';
 import config from '../config/firebase';
 import styled from 'styled-components/native';
+import { useTranslation } from 'react-i18next';
+import i18n from '../config/i18n';
 
 const Chat = () => {
   const [user, setUser] = useState(null);
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState([]);
   const [selectedUser, setSelectedUser] = useState(null);
+  const { t, i18n } = useTranslation();
+  const [currentLanguage, setCurrentLanguage] = useState('en');
 
   const app = initializeApp(config);
   const auth = getAuth(app);
@@ -75,7 +79,7 @@ const Chat = () => {
               value={message}
             />
             <SendButton onPress={handleSend}>
-              <SendButtonText>Send</SendButtonText>
+              <SendButtonText>{t('send')}</SendButtonText>
             </SendButton>
           </InputContainer>
       {user && (
@@ -83,7 +87,7 @@ const Chat = () => {
           <MessageContainer>
             {selectedUser && (
               <>
-                <ConversationHeader>Conversation with {selectedUser.email}:</ConversationHeader>
+                <ConversationHeader>{t('conversation')} {selectedUser.email}:</ConversationHeader>
                 {messages.map((msg) => (
                   <Message key={msg.key}>Maktooo: {msg.text}</Message>
                 ))}
@@ -92,7 +96,7 @@ const Chat = () => {
           </MessageContainer>
           
           <UserListContainer>
-            <UserListHeader>Select a user to chat:</UserListHeader>
+            <UserListHeader>{t('selectUser')}:</UserListHeader>
             {user.uid !== selectedUser?.uid && (
               <UserListItem onPress={() => setSelectedUser(user)}>
                 <UserListItemText>{user.email}</UserListItemText>

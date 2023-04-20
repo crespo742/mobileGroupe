@@ -29,7 +29,7 @@ const Register = () => {
 
   const createUser = () => {
     if (password !== confirmPassword) {
-      setError('Les deux mots de passe doivent correspondre');
+      setError(t('verifPassword'));
       return;
     }
 
@@ -74,7 +74,7 @@ const Register = () => {
       
       Toast.show({
         type: 'success',
-        text1: `Welcome to our app ${pseudo}`,
+        text1: t('Toast') `${pseudo}`,
       });
   };
 
