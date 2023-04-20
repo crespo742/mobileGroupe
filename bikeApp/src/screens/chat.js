@@ -129,6 +129,9 @@ const Header = styled.View`
 const HeaderText = styled.Text`
   font-size: 24px;
   font-weight: bold;
+  color: ${props => props.theme.textColor};
+  background-color: ${props => props.theme.backgroundColor};
+  
 `;
 
 const ChatContainer = styled.View`

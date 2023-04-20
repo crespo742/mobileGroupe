@@ -10,7 +10,7 @@ export default {
       loginButton: 'Login' ,
       pseudoPlaceholder: 'UserName',
       confirmpasswordPlaceholder: 'Comfirm Password',
-      createAccount: 'create an account',
+      createAccount: 'Create an account',
       registerTitle: 'REGISTER',
       profileTitle: 'Profile',
       sendMessage: 'Send message',

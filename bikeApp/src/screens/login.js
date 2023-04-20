@@ -44,10 +44,10 @@ const Login = ({ navigation }) => {
         secureTextEntry={true}
       />
     <StyledView>
-      <Text>{t('textToRegister')}
+      <StyledText1>{t('textToRegister')}</StyledText1>
       <TouchableOpacity onPress={() => navigation.navigate('Register')}>
-        <StyledText> {t('linkToRegister')}</StyledText>
-      </TouchableOpacity></Text>
+        <StyledText2> {t('linkToRegister')}</StyledText2>
+      </TouchableOpacity>
     </StyledView>
       <Button onPress={login}>
         <ButtonText>{t('loginButton')}</ButtonText>
@@ -68,6 +68,7 @@ const Title = styled.Text`
   font-size: 24px;
   font-weight: bold;
   margin-bottom: 32px;
+  color: ${props => props.theme.textColor};
 `;
 
 const Input = styled.TextInput`
@@ -103,16 +104,19 @@ const ErrorMessage = styled.Text`
 
 const StyledView = styled.View`
   background-color: ${props => props.theme.backgroundColor};
+  display:flex;
+  flex-direction:row;
   align-items: center;
   justify-content: center;
 `;
 
-const StyledText = styled.Text`
+const StyledText1 = styled.Text`
   color: ${props => props.theme.textColor};
-  text-align: center;
-  top:4px;
 `;
 
-
+const StyledText2 = styled.Text`
+  color: ${props => props.theme.textColor};
+  font-weight: bold;
+`;
 
 export default Login;

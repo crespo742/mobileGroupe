@@ -135,12 +135,14 @@ const Container = styled.View`
   flex: 1;
   background-color: #fff;
   padding: 20px;
+  background-color: ${props => props.theme.backgroundColor};
 `;
 
 const Title = styled.Text`
   font-size: 24px;
   font-weight: bold;
   margin-top: 20px;
+  color: ${props => props.theme.textColor};
 `;
 
 const Form = styled.View`
@@ -151,6 +153,8 @@ const Input = styled.TextInput`
   border: 1px solid #ccc;
   padding: 10px;
   margin-bottom: 20px;
+  border-color: #aaaaaa;
+  color: ${props => props.theme.textColor};
 `;
 const ErrorText = styled.Text`
   color: red;

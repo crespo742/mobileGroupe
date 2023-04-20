@@ -50,6 +50,7 @@ const Profile = () => {
       console.log(error);
     });
   }
+  console.log(user);
 
   return (
     <StyledContainer>
@@ -63,7 +64,7 @@ const Profile = () => {
           </StyledInfoContainer>
           <StyledInfoContainer>
             <StyledInfo>{t('pseudoPlaceholder')} :</StyledInfo>
-            <StyledInfoText>{user.pseudo}</StyledInfoText>
+            <StyledInfoText>{user.displayName}</StyledInfoText>
           </StyledInfoContainer>
           <CustomButton text={t('sendMessage')} onPress={() => navigation.navigate('Chat')}/>
           <FavButton text={t('logout')} onPress={handleSignOut} />
