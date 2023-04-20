@@ -25,5 +25,7 @@ Fonctionnalités :
 
 
 ![IBE46GC](https://user-images.githubusercontent.com/56248842/233439000-93078d7c-371f-4932-9ef0-ec94f99445e8.gif)
+
 Pour la localisation on avais demander a toujours autoriser du coup on le vois pas dans la demo 
+
 ![image](https://user-images.githubusercontent.com/57002905/233439796-b6a732eb-0375-4d80-870f-6bfa2736098e.png)
