@@ -19,4 +19,6 @@ export default {
       selectUser: 'Select a user to chat',
       conversation: 'Conversation whith',
       send: 'Send',
+      verifPassword: 'Both passwords must match',
+      Toast: 'Welcome to our app',
   };
