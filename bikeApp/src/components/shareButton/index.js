@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const FavButton = ({ text, onPress }) => {
+const ShareButton = ({ text, onPress }) => {
   return (
     <StyledButton onPress={onPress}>
       <StyledText> {text} </StyledText>
@@ -11,14 +11,14 @@ const FavButton = ({ text, onPress }) => {
 
 const StyledButton = styled.TouchableOpacity`
   background-color: ${props => props.theme.textColor};
-  border: 1px solid ${props => props.theme.backgroundColor};
+  border: 1px solid black;
   padding: 10px;
   border-radius: 5px;
-  width:150px;
+  width:350px;
   height:40px;
-  left:220px;
   margin-bottom:15px;
   margin-top:15px;
+  border: ${props => props.theme.backgroundColor};
 `;
 
 const StyledText = styled.Text`
@@ -26,4 +26,4 @@ const StyledText = styled.Text`
   text-align:center;
 `;
 
-export default FavButton;
+export default ShareButton;

@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import LanguageSwitch from '../languageswitch';
 
 const Header = () => {
   const navigation = useNavigation();
@@ -18,7 +19,8 @@ const Header = () => {
           source={require('../../assets/yam.png')}
         />
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => handleNavigation('Login')}>
+      <LanguageSwitch />
+      <TouchableOpacity onPress={() => handleNavigation('Profile')}>
         <Login
           style={{ width: 30, height: 30 }}
           source={require('../../assets/login.png')}

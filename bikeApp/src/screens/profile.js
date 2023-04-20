@@ -8,6 +8,8 @@ import FavButton from '../components/favButton';
 import GoBack from '../components/goBack';
 import { Share } from 'react-native';
 import styled from 'styled-components/native';
+import ShareButton from '../components/shareButton';
+import CustomButton from '../components/customButton';
 
 const Profile = () => {
   const [user, setUser] = useState(null);
@@ -58,13 +60,9 @@ const Profile = () => {
             <StyledInfo>Pseudo:</StyledInfo>
             <StyledInfoText>{user.pseudo}</StyledInfoText>
           </StyledInfoContainer>
-          <TouchableOpacity onPress={() => navigation.navigate('Chat')}>
-            <StyledLink>Envoyer un message</StyledLink>
-          </TouchableOpacity>
+          <CustomButton text="Envoyer un message" onPress={() => navigation.navigate('Chat')}/>
           <FavButton text="Déconnexion" onPress={handleSignOut} />
-          <StyledButtonContainer>
-            <Button title="Partager" onPress={shareContent} />
-          </StyledButtonContainer>
+          <ShareButton text="Partager" onPress={shareContent} />
         </>
       )}
     </StyledContainer>
@@ -103,12 +101,19 @@ const StyledInfoText = styled.Text`
 
 const StyledLink = styled.Text`
   font-size: 16px;
-  color: ${props => props.theme.linkColor};
+  color: ${props => props.theme.textColor};
   margin-bottom: 10px;
 `;
 
-const StyledButtonContainer = styled.View`
-  margin-top: 20px;
+const SendButton = styled.TouchableOpacity`
+  background-color: ${props => props.theme.backgroundColor};
+  border: 1px solid ${props => props.theme.backgroundColor};
+  padding: 10px;
+  border-radius: 5px;
+  width:150px;
+  height:40px;
+  margin-bottom:15px;
+  margin-top:15px;
 `;
 
 export default Profile;

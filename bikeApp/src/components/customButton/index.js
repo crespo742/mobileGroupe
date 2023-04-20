@@ -10,17 +10,17 @@ const CustomButton = ({ text, onPress }) => {
 };
 
 const StyledButton = styled.TouchableOpacity`
-  background-color: ${props => props.theme.backgroundColor};
+  background-color: ${props => props.theme.textColor};
   border: 1px solid black;
   padding: 10px;
   border-radius: 5px;
   text-align:center;
   margin:2px 4px 2px 4px;
-  border: ${props => props.theme.textColor};
+  border: ${props => props.theme.backgroundColor};
 `;
 
 const StyledText = styled.Text`
-  color: ${props => props.theme.textColor};
+  color: ${props => props.theme.backgroundColor};
 `;
 
 export default CustomButton;

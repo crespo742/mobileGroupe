@@ -5,11 +5,15 @@ import { initializeApp } from 'firebase/app';
 import config from '../config/firebase';
 import styled from 'styled-components/native';
 import GoBack from '../components/goBack';
+import { useTranslation } from 'react-i18next';
+import i18n from '../config/i18n';
 
 const Login = ({ navigation }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const { t, i18n } = useTranslation();
+  const [currentLanguage, setCurrentLanguage] = useState('en');
 
   const app = initializeApp(config);
   const auth = getAuth(app);
@@ -27,26 +31,26 @@ const Login = ({ navigation }) => {
 
   return (
     <Container>
-      <Title>Login Page</Title>
+      <Title>{t('loginTitle')}</Title>
       <Input
-        placeholder="Email"
+        placeholder={t('emailPlaceholder')}
         onChangeText={(text) => setEmail(text)}
         value={email}
       />
       <Input
-        placeholder="Password"
+        placeholder={t('passwordPlaceholder')}
         onChangeText={(text) => setPassword(text)}
         value={password}
         secureTextEntry={true}
       />
     <StyledView>
-      <Text>Vous n'avez pas de compte ?
+      <Text>{t('textToRegister')}
       <TouchableOpacity onPress={() => navigation.navigate('Register')}>
-        <StyledText> Inscrivez-vous ici</StyledText>
+        <StyledText> {t('linkToRegister')}</StyledText>
       </TouchableOpacity></Text>
     </StyledView>
       <Button onPress={login}>
-        <ButtonText>Login</ButtonText>
+        <ButtonText>{t('loginButton')}</ButtonText>
       </Button>
       {error !== '' && <ErrorMessage>{error}</ErrorMessage>}
     </Container>
