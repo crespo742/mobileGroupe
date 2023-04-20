@@ -12,6 +12,7 @@ import Toast from 'react-native-toast-message';
 import { onAuthStateChanged } from 'firebase/auth';
 import { useTranslation } from 'react-i18next';
 import i18n from '../config/i18n';
+import LanguageSwitch from '../components/languageswitch';
 
 
 const Home = props => {
@@ -108,12 +109,7 @@ const Home = props => {
   return (
     <BigView>
       <Header />
-      <TouchableOpacity onPress={() => changeLanguage('en')}>
-        <StyledText>{t('english')}</StyledText>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={() => changeLanguage('fr')}>
-        <StyledText>{t('french')}</StyledText>
-      </TouchableOpacity>
+      <LanguageSwitch></LanguageSwitch>
       <Wrapper>
         <FavButton text={t('favorites')} onPress={() => handleNavigation('Favoris')} />
         <FavButton text={t('register')} onPress={() => handleNavigation('Register')} />
