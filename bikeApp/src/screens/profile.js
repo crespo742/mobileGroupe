@@ -60,10 +60,6 @@ const Profile = () => {
             <StyledInfo>{t('emailPlaceholder')}:</StyledInfo>
             <StyledInfoText>{user.email}</StyledInfoText>
           </StyledInfoContainer>
-          <StyledInfoContainer>
-            <StyledInfo>{t('pseudoPlaceholder')} :</StyledInfo>
-            <StyledInfoText>{user.displayName}</StyledInfoText>
-          </StyledInfoContainer>
           <CustomButton text={t('sendMessage')} onPress={() => navigation.navigate('Chat')}/>
           <FavButton text={t('logout')} onPress={handleSignOut} />
           <ShareButton text={t('share')} onPress={shareContent} />

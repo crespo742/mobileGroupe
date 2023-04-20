@@ -82,7 +82,7 @@ const Chat = () => {
               <>
                 <ConversationHeader>{t('conversation')} {selectedUser.email}:</ConversationHeader>
                 {messages.map((msg) => (
-                  <Message key={msg.key}>Maktooo: {msg.text}</Message>
+                  <Message key={msg.key}>{user.email} {msg.text}</Message>
                 ))}
               </>
             )}

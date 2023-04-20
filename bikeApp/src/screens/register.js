@@ -51,9 +51,6 @@ const Register = () => {
             return set(userRef, userData);
           })
           .then(() => {
-            console.log(
-              'Utilisateur enregistré avec succès dans la base de données Firebase'
-            );
             navigation.navigate('Home');
           })
           .catch((error) => {
