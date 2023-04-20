@@ -8,4 +8,12 @@ export default {
       textToRegister: "You don't have an account ?" ,
       linkToRegister: "Create one here" ,
       loginButton: 'Login' ,
+      pseudoPlaceholder: 'UserName',
+      confirmpasswordPlaceholder: 'Comfirm Password',
+      createAccount: 'create an account',
+      registerTitle: 'REGISTER',
+      profileTitle: 'Profile',
+      sendMessage: 'Send message',
+      logout: 'Logout',
+      share: 'Share',
   };

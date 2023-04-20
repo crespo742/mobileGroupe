@@ -8,5 +8,13 @@ export default {
       textToRegister: "Vous n'avez pas de compte ?" ,
       linkToRegister: 'Inscrivez vous ici' ,
       loginButton: 'Connectez vous' ,
+      pseudoPlaceholder:'Pseudo',
+      confirmpasswordPlaceholder: 'Confirmez votre mot de passe',
+      createAccount: 'Creer un compte',
+      registerTitle: 'INSCRIPTION',
+      profileTitle: 'Profil',
+      sendMessage: 'Envoyer un message',
+      logout: 'Déconnexion',
+      share: 'Partager',
   };
   

@@ -10,6 +10,8 @@ import { Share } from 'react-native';
 import styled from 'styled-components/native';
 import ShareButton from '../components/shareButton';
 import CustomButton from '../components/customButton';
+import { useTranslation } from 'react-i18next';
+import i18n from '../config/i18n';
 
 const Profile = () => {
   const [user, setUser] = useState(null);
@@ -17,6 +19,9 @@ const Profile = () => {
 
   const app = initializeApp(config);
   const auth = getAuth(app);
+
+  const { t, i18n } = useTranslation();
+  const [currentLanguage, setCurrentLanguage] = useState('en');
 
   const shareContent = () => {
     Share.share({
@@ -51,18 +56,18 @@ const Profile = () => {
       <GoBack onPress={() => navigation.goBack()} />
       {user && (
         <>
-          <StyledTitle>Profil</StyledTitle>
+          <StyledTitle>{t('profileTitle')}</StyledTitle>
           <StyledInfoContainer>
-            <StyledInfo>Email:</StyledInfo>
+            <StyledInfo>{t('emailPlaceholder')}:</StyledInfo>
             <StyledInfoText>{user.email}</StyledInfoText>
           </StyledInfoContainer>
           <StyledInfoContainer>
-            <StyledInfo>Pseudo:</StyledInfo>
+            <StyledInfo>{t('pseudoPlaceholder')} :</StyledInfo>
             <StyledInfoText>{user.pseudo}</StyledInfoText>
           </StyledInfoContainer>
-          <CustomButton text="Envoyer un message" onPress={() => navigation.navigate('Chat')}/>
-          <FavButton text="Déconnexion" onPress={handleSignOut} />
-          <ShareButton text="Partager" onPress={shareContent} />
+          <CustomButton text={t('sendMessage')} onPress={() => navigation.navigate('Chat')}/>
+          <FavButton text={t('logout')} onPress={handleSignOut} />
+          <ShareButton text={t('share')} onPress={shareContent} />
         </>
       )}
     </StyledContainer>

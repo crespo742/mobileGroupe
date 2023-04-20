@@ -10,6 +10,8 @@ import config from '../config/firebase';
 import Geolocation from '@react-native-community/geolocation';
 import Notifee from '@notifee/react-native';
 import Toast from 'react-native-toast-message';
+import { useTranslation } from 'react-i18next';
+import i18n from '../config/i18n';
 
 const Register = () => {
   const navigation = useNavigation();
@@ -18,6 +20,9 @@ const Register = () => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
+  
+  const { t, i18n } = useTranslation();
+  const [currentLanguage, setCurrentLanguage] = useState('en');
 
   const app = initializeApp(config);
   const auth = getAuth(app);
@@ -91,33 +96,33 @@ const Register = () => {
   return (
     <Container>
       <GoBack onPress={() => navigation.goBack()} />
-      <Title>Inscription</Title>
+      <Title>{t('registerTitle')}</Title>
       <Form>
         <Input
-          placeholder="Pseudo"
+          placeholder={t('pseudoPlaceholder')}
           onChangeText={(text) => setPseudo(text)}
           value={pseudo}
         />
         <Input
-          placeholder="Email"
+          placeholder={t('emailPlaceholder')}
           onChangeText={(text) => setEmail(text)}
           value={email}
         />
         <Input
-          placeholder="Mot de passe"
+          placeholder={t('passwordPlaceholder')}
           secureTextEntry={true}
           onChangeText={(text) => setPassword(text)}
           value={password}
         />
         <Input
-          placeholder="Confirmer le mot de passe"
+          placeholder={t('confirmpasswordPlaceholder')}
           secureTextEntry={true}
           onChangeText={(text) => setConfirmPassword(text)}
           value={confirmPassword}
         />
         {error !== '' && <ErrorText>{error}</ErrorText>}
         <Button onPress={createUser}>
-          <ButtonText>Créer un compte</ButtonText>
+          <ButtonText>{t('createAccount')}</ButtonText>
         </Button>
       </Form>
     </Container>
