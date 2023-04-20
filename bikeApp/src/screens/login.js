@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, TextInput } from 'react-native';
+import { TouchableOpacity } from 'react-native';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import { initializeApp } from 'firebase/app';
 import config from '../config/firebase';
 import styled from 'styled-components/native';
-import GoBack from '../components/goBack';
 import { useTranslation } from 'react-i18next';
 import i18n from '../config/i18n';
 
@@ -21,7 +20,6 @@ const Login = ({ navigation }) => {
   const login = () => {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        // Connexion réussie, rediriger vers la page Home
         navigation.navigate('Home');
       })
       .catch((error) => {

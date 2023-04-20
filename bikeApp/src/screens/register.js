@@ -54,6 +54,7 @@ const Register = () => {
             console.log(
               'Utilisateur enregistré avec succès dans la base de données Firebase'
             );
+            navigation.navigate('Home');
           })
           .catch((error) => {
             console.log(error.message);
@@ -129,8 +130,6 @@ const Register = () => {
   );
 };
 
-
-
 const Container = styled.View`
   flex: 1;
   background-color: #fff;
@@ -175,4 +174,3 @@ const ButtonText = styled.Text`
 `;
 
 export default Register;
-

@@ -6,7 +6,7 @@ import FavButton from '../components/favButton';
 import CustomButton from '../components/customButton';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { Text, FlatList, Image, View, TouchableOpacity } from 'react-native';
+import { FlatList, Image } from 'react-native';
 import Notifee from '@notifee/react-native';
 import Toast from 'react-native-toast-message';
 import { onAuthStateChanged } from 'firebase/auth';

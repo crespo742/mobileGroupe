@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, TouchableOpacity, Button } from 'react-native';
 import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth';
 import { initializeApp } from 'firebase/app';
 import { useNavigation } from '@react-navigation/native';

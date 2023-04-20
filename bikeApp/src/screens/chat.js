@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity } from 'react-native';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { getDatabase, ref, push, child, onValue, off } from 'firebase/database';
 import { initializeApp } from 'firebase/app';
@@ -7,6 +6,8 @@ import config from '../config/firebase';
 import styled from 'styled-components/native';
 import { useTranslation } from 'react-i18next';
 import i18n from '../config/i18n';
+import GoBack from '../components/goBack';
+import { useNavigation } from '@react-navigation/native';
 
 const Chat = () => {
   const [user, setUser] = useState(null);
@@ -15,6 +16,7 @@ const Chat = () => {
   const [selectedUser, setSelectedUser] = useState(null);
   const { t, i18n } = useTranslation();
   const [currentLanguage, setCurrentLanguage] = useState('en');
+  const navigation = useNavigation();
 
   const app = initializeApp(config);
   const auth = getAuth(app);
@@ -72,16 +74,7 @@ const Chat = () => {
       <Header>
         <HeaderText>Chat Page</HeaderText>
       </Header>
-      <InputContainer>
-            <Input
-              placeholder="Message"
-              onChangeText={(text) => setMessage(text)}
-              value={message}
-            />
-            <SendButton onPress={handleSend}>
-              <SendButtonText>{t('send')}</SendButtonText>
-            </SendButton>
-          </InputContainer>
+      <GoBack onPress={() => navigation.goBack()}/>
       {user && (
         <ChatContainer>
           <MessageContainer>
@@ -114,6 +107,16 @@ const Chat = () => {
           </UserListContainer>
         </ChatContainer>
       )}
+      <InputContainer>
+        <Input
+          placeholder="Message"
+          onChangeText={(text) => setMessage(text)}
+          value={message}
+        />
+        <SendButton onPress={handleSend}>
+          <SendButtonText>{t('send')}</SendButtonText>
+        </SendButton>
+      </InputContainer>
     </Container>
   );
 };
@@ -125,7 +128,7 @@ const Container = styled.View`
 
 const Header = styled.View`
   height: 80px;
-  background-color: #f2f2f2;
+  background-color: ${props => props.theme.backgroundColor};
   justify-content: center;
   align-items: center;
 `;
@@ -135,11 +138,11 @@ const HeaderText = styled.Text`
   font-weight: bold;
   color: ${props => props.theme.textColor};
   background-color: ${props => props.theme.backgroundColor};
-  
+  width:400px;
+  text-align:center;
 `;
 
 const ChatContainer = styled.View`
-  top:-125px;
   flex: 1;
   flex-direction: row;
 `;
@@ -147,23 +150,27 @@ const ChatContainer = styled.View`
 const MessageContainer = styled.View`
   flex: 2;
   padding: 16px;
+  color: ${props => props.theme.backgroundColor};
 `;
 
 const ConversationHeader = styled.Text`
   font-size: 20px;
   font-weight: bold;
   margin-bottom: 16px;
+  color: ${props => props.theme.textColor};
 `;
 
 const Message = styled.Text`
   font-size: 16px;
   margin-bottom: 8px;
   width:350px;
+  color: ${props => props.theme.textColor};
 `;
 
 const InputContainer = styled.View`
   flex: 1;
   padding: 16px;
+  top:109px;
 `;
 
 const Input = styled.TextInput`
@@ -196,6 +203,7 @@ const UserListHeader = styled.Text`
   font-size: 20px;
   font-weight: bold;
   margin-bottom: 16px;
+  color: ${props => props.theme.textColor};
 `;
 
 const UserListItem = styled.TouchableOpacity`
@@ -203,10 +211,12 @@ const UserListItem = styled.TouchableOpacity`
   margin-bottom: 8px;
   background-color: #f2f2f2;
   border-radius: 4px;
+  width:100px;
 `;
 
 const UserListItemText = styled.Text`
   font-size: 16px;
+  color: ${props => props.theme.textColor};
 `;
 
 export default Chat;
