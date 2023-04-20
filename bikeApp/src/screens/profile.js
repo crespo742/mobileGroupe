@@ -50,7 +50,6 @@ const Profile = () => {
       console.log(error);
     });
   }
-  console.log(user);
 
   return (
     <StyledContainer>

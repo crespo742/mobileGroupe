@@ -74,7 +74,7 @@ const Register = () => {
       
       Toast.show({
         type: 'success',
-        text1: t('Toast') `${pseudo}`,
+        text1: t('Toast'),
       });
   };
 
