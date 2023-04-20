@@ -16,4 +16,7 @@ export default {
       sendMessage: 'Send message',
       logout: 'Logout',
       share: 'Share',
+      selectUser: 'Select a user to chat',
+      conversation: 'Conversation whith',
+      send: 'Send',
   };

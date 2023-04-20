@@ -16,5 +16,8 @@ export default {
       sendMessage: 'Envoyer un message',
       logout: 'Déconnexion',
       share: 'Partager',
+      selectUser: 'Choisit un utilisateur pour parler',
+      conversation: 'Conversation avec',
+      send: 'Envoyer',
   };
   
