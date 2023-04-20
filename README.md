@@ -21,3 +21,7 @@ Fonctionnalités :
 - une page inscription basique mais avec la localisation de l'utilisateur
 - une page profil regroupant les informations de l'utilisateur et les differentes moto qu'il as liker
 - un systeme de messagerie permettant de faire communiquer les utilisateurs
+
+
+![IBE46GC](https://user-images.githubusercontent.com/56248842/233439000-93078d7c-371f-4932-9ef0-ec94f99445e8.gif)
+
